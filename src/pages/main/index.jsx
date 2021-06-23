@@ -1,9 +1,9 @@
 import React from "react";
-
+import SignWindow from "../../components/sign-window";
 function MainPage() {
     return (
         <div>
-            <h1>Лунтик</h1>
+            <SignWindow/>
         </div>
     )
 }

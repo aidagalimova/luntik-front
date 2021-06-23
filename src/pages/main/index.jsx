@@ -1,9 +1,9 @@
 import React from "react";
-
+import DateCarousel from "../../components/date-carousel";
 function MainPage() {
     return (
         <div>
-            <h1>Лунтик</h1>
+            <DateCarousel/>
         </div>
     )
 }

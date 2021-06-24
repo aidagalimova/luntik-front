@@ -1,0 +1,114 @@
+.lk-text {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.form {
+    width: 400px !important;
+    text-align: -webkit-center;
+    .main-title {
+        font-weight: bold;
+    }
+    .not-main-title {
+        font-weight: bold;
+        color: #5b5c69;
+        cursor: pointer;
+        margin-top: 10px;
+        text-decoration: underline;
+    }
+    .sign {
+        .item {
+            padding: 4px 0px !important;
+            .input {
+                border: 1px solid #5b5c69;
+                box-sizing: border-box;
+                border-radius: 10px;
+                background: #d5d1ed !important;
+                height: 38px;
+                width: 80%;
+            }
+        }
+
+        .signin-btn {
+            background: #5b5c69 !important;
+            box-sizing: border-box;
+            border-radius: 10px;
+            height: 45px !important;
+            width: 50%;
+            margin-top: 5px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s ease-out;
+            margin-bottom: 20px;
+            .btnText {
+                color: #c4bfe3;
+                font-weight: bold;
+                font-size: 30px;
+                margin-top: -13px;
+            }
+
+            &:hover {
+                background: #32333a !important;
+            }
+
+            &:active {
+                background: #747585 !important;
+            }
+        }
+
+        .signup-btn {
+            background: #5b5c69 !important;
+            box-sizing: border-box;
+            border-radius: 10px;
+            height: 45px !important;
+            width: 80%;
+            margin-top: 5px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s ease-out;
+            margin-bottom: 20px;
+
+            .btnText {
+                color: #c4bfe3;
+                font-weight: bold;
+                font-size: 25px;
+                margin-top: -8px;
+            }
+
+            &:hover {
+                background: #32333a !important;
+            }
+
+            &:active {
+                background: #747585 !important;
+            }
+        }
+    }
+}
+
+.ant-modal-content {
+    box-shadow: none !important;
+    background-color: #c4bfe3 !important;
+    border-radius: 15px !important;
+}
+
+.ant-form-item-explain,
+.ant-form-item-explain-error {
+    color: #e23434 !important;
+    text-align: left;
+    font-size: 15px;
+    padding-left: 13%;
+}
+
+.ant-input {
+    background-color: #d5d1ed !important;
+}
+::placeholder {
+    color: #5b5c69 !important;
+}

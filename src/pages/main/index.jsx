@@ -1,9 +1,9 @@
 import React from "react";
-import DateCarousel from "../../components/date-carousel";
+import SignWindow from "../../components/sign-window";
 function MainPage() {
     return (
         <div>
-            <DateCarousel/>
+            <SignWindow/>
         </div>
     )
 }

@@ -37,17 +37,22 @@ for (let i = 0; i < 40; i++) {
 
 let daysList = [];
 
-function Months() {
+function DatesCarousel() {
 
     const [selectedDay, setSelectedDay] = useState(days[0][0][1]);
     const [scroll, setScroll] = useState(0);
+
+    useEffect(() => {
+        const element = document.getElementsByClassName('day ' + selectedDay);
+        element[0].style.backgroundColor = "#B2A2CB";
+    });
 
     function doScroll(x) {
         const el = document.getElementsByClassName("table-container")[0];
 
         if (scroll + x < 0) {
             el.scrollTo({
-                left: scroll-scroll,
+                left: scroll - scroll,
                 behavior: 'smooth',
             })
             setScroll(0)
@@ -60,12 +65,6 @@ function Months() {
             setScroll(scroll + x)
         }
     }
-
-    useEffect(() => {
-        const element = document.getElementsByClassName('day ' + selectedDay);
-        element[0].style.backgroundColor = "#B2A2CB";
-        console.log(selectedDay);
-    });
 
     const onDayClick = (number) => {
         const prevElement = document.getElementsByClassName('day ' + selectedDay);
@@ -81,11 +80,13 @@ function Months() {
         daysList[i] = days[i].map((day) => {
             let number = day[1];
             let weekDay = day[0];
+            let month = day[2]
             return (
-                <td onClick={() => onDayClick(number)}>
-                    <div className={"day " + number} key={number}>
+                <td onClick={() => onDayClick(number)} key={number + month}>
+                    <div className={"day " + number}>
                         <h1 className="number">{number}</h1>
-                        <h1 className="weekDay">{weekDay}</h1>
+                        <h3 className="month">{month}</h3>
+                        <h3 className="weekDay">{weekDay}</h3>
                     </div>
                 </td>)
         })
@@ -103,17 +104,12 @@ function Months() {
                     <table>
                         <tbody>
                             <tr>
-                                <td>
-                                    <h3 className="month"> {daysList[1].month}</h3>
-                                </td>
-                            </tr>
-                            <tr>
                                 {daysList[0]}
                                 {daysList[1]}
                             </tr>
-
                         </tbody>
                     </table>
+
                 </div>
             </Col>
             <Col span={2}>
@@ -121,4 +117,4 @@ function Months() {
             </Col>
         </Row>)
 }
-export default Months
+export default DatesCarousel;

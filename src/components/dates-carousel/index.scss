@@ -21,10 +21,10 @@
     border-radius: 20px;
     .number {
         font-weight: bold;
-        color: #5b5c69;
+        color: #373841;
     }
     .weekDay {
-        margin-top: -25px;
+        margin-top: -10px;
         font-weight: bold;
         color: #5b5c69;
     }
@@ -32,9 +32,11 @@
 
 .month {
     color: #373841;
+    margin-top: -24px;
+    font-weight: bold;
 }
 
 .ant-col-2{
     align-self: center;
-    margin-top: 17px !important;
+    margin-top: 7px !important;
 }

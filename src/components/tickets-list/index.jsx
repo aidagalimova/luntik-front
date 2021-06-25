@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import Ticket from "../ticket";
 import { Row, Col } from "antd";
 import "./index.scss";
@@ -11,14 +10,12 @@ function TicketsList() {
         day: 'numeric',
     };
     const ticketsList = tickets.map((dayTickets) => {
-        console.log(dayTickets)
         return (
             <Row key={dayTickets.date} className="tickets-row">
                 <Col span={24}>
                     <h1 className="text">{dayTickets.date.toLocaleString("ru", options)}</h1>
                 </Col>
                 {dayTickets.tickets.map((ticket) => {
-                    console.log(ticket);
                     return (<Ticket ticket={ticket} key={ticket.id} />)
                 })}
             </Row>
@@ -28,7 +25,7 @@ function TicketsList() {
     return (
         <>
             <Row className="tickets-list">
-                {ticketsList.length === 0 ?
+                {!ticketsList.length?
                     <h1 className="text title">У вас нет билетов</h1> :
                     <>
                         <Col span={24}> <h1 className="text title">Ваши билеты</h1></Col>

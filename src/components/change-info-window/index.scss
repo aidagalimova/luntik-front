@@ -10,17 +10,20 @@
 .form {
     width: 400px !important;
     text-align: -webkit-center;
-    .main-title {
-        font-weight: bold;
+    .title-row {
+        margin-bottom: 15px;
+        .main-title {
+            font-weight: bold;
+        }
+        .not-main-title {
+            font-weight: bold;
+            color: #5b5c69;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: -19px;
+        }
     }
-    .not-main-title {
-        font-weight: bold;
-        color: #5b5c69;
-        cursor: pointer;
-        margin-top: 10px;
-        text-decoration: underline;
-    }
-    .sign {
+    .change {
         .item {
             padding: 4px 0px !important;
             .input {
@@ -33,6 +36,7 @@
             }
             .email {
                 background-color: #bdb9d3 !important;
+                cursor: default;
             }
         }
 
@@ -53,8 +57,8 @@
             .btnText {
                 color: #c4bfe3;
                 font-weight: bold;
-                font-size: 30px;
-                margin-top: -13px;
+                font-size: 25px;
+                margin-top: -9px;
             }
 
             &:hover {

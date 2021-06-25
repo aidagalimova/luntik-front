@@ -5,14 +5,16 @@ import "./index.scss";
 function ChangeInfoWindow({ email, name }) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isInfoModal, setIsInfoModal] = useState(true);
-
+    const [userName, setUserName] = useState(name);
     const showModal = () => {
         setIsModalVisible(true);
     };
 
     const handleCancel = () => {
         setIsInfoModal(true);
+        setUserName(name);
         setIsModalVisible(false);
+        console.log(userName);
     };
 
     const setInfo = (isInfo) => {
@@ -31,14 +33,25 @@ function ChangeInfoWindow({ email, name }) {
                 footer={null}>
                 {isInfoModal ?
                     <>
-
-                        <h1 className="main-title">Личные данные</h1>
-                        <h2 className="not-main-title" onClick={() => setInfo(false)}>Сменить пароль</h2>
-                        {ChangeInfo(email, name)}
+                        <Row className="title-row">
+                            <Col span={24}>
+                                <h1 className="main-title">Личные данные</h1>
+                            </Col>
+                            <Col span={17} offset={7}>
+                                <h3 className="not-main-title" onClick={() => setInfo(false)}>Сменить пароль</h3>
+                            </Col>
+                        </Row>
+                        {ChangeInfo(email, userName)}
                     </> :
                     <>
-                        <h1 className="main-title">Сменить пароль</h1>
-                        <h2 className="not-main-title" onClick={() => setInfo(true)}>Личные данные</h2>
+                        <Row className="title-row">
+                            <Col span={24}>
+                                <h1 className="main-title">Сменить пароль</h1>
+                            </Col>
+                            <Col span={17} offset={7}>
+                                <h3 className="not-main-title" onClick={() => setInfo(true)}>Личные данные</h3>
+                            </Col>
+                        </Row>
                         {ChangePassword}
                     </>
                 }
@@ -55,15 +68,18 @@ const validateMessages = {
     }
 };
 
-const onSignup = (values) => {
+const SaveChangeInfo = (values) => {
     console.log(values);
 };
 
 const ChangeInfo = (email, name) => (
-    <div className="sign">
+    <div className="change">
         <Form
+            initialValues={{
+                ["имя"]: name
+            }}
             validateMessages={validateMessages}
-            onFinish={onSignup}
+            onFinish={SaveChangeInfo}
         >
             <Form.Item
                 name="электронный адрес"
@@ -75,7 +91,7 @@ const ChangeInfo = (email, name) => (
                 name="имя"
                 rules={[{ required: true, max: 10, min: 3 }]}
                 className="item">
-                <Input className="input" defaultValue={name} />
+                <Input className="input" />
             </Form.Item>
 
             <Button type="primary" htmlType="submit" className="signup-btn">
@@ -85,15 +101,15 @@ const ChangeInfo = (email, name) => (
     </div>
 )
 
-const onSignin = (values) => {
+const SaveChangePassword = (values) => {
     console.log(values);
 }
 
 const ChangePassword = (
-    <div className="sign">
+    <div className="change">
         <Form
             validateMessages={validateMessages}
-            onFinish={onSignin}>
+            onFinish={SaveChangePassword}>
             <Form.Item
                 name="старый пароль"
                 className="item">

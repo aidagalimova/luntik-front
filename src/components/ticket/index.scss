@@ -1,0 +1,15 @@
+.ticket-col {
+    margin-bottom: 25px;
+    .ticket {
+        background-color: #c4bfe3;
+        box-shadow: 4px 4px 9px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 10px 30px;
+        width: 85%;
+        .text {
+            color: #373841;
+            margin-bottom: -5px;
+            font-weight: bold;
+        }
+    }
+}

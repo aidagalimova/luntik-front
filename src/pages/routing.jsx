@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainPage from "./main";
 import FilmPage from "./film";
-import ProfilePage from "./profile";\
+import ProfilePage from "./profile";
 const Routing = () => (
     <Router>
         <Route path="/" component={MainPage} exact/>

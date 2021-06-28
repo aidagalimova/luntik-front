@@ -29,6 +29,13 @@
             font-weight: bold;
             color: #c4bfe3;
         }
+
+        &:hover {
+            background: #454650 !important;
+        }
+        &:active {
+            background: #747585 !important;
+        }
     }
 }
 .film-time-row {

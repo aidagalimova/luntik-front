@@ -1,0 +1,19 @@
+.time-div {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 12px;
+    text-align: center;
+    border-color: #c4bfe3;
+    &:hover {
+        background: #454650 !important;
+    }
+
+    &:active {
+        background: #747585 !important;
+    }
+    .time {
+        cursor: pointer;
+        color: #c4bfe3;
+        margin-bottom: 4px;
+    }
+}

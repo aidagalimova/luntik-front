@@ -20,7 +20,6 @@ function FilmInfo(props) {
                     <h3 className="text">Продолжительность: {props.filmInfo.duration}</h3>
                     <h3 className="text">Жанр: {genres}</h3>
                 </Col>
-
             </Row>
         </div>
     )

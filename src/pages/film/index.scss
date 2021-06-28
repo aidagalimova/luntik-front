@@ -1,7 +1,10 @@
-.film-info {
-    width: 90%;
-    padding-left: 15px;
-    padding-right: 50px;
-    padding-top: 20px;
-    
+.film{
+    background-color: #5b5c69;
+    min-height: 100vh;
+    .film-info {
+        width: 90%;
+        padding-left: 15px;
+        padding-right: 50px;
+        padding-top: 20px;
+    }
 }

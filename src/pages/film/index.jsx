@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import DatesCarousel from "../../components/dates-carousel";
 import FilmInfo from "../../components/film-info";
-import filmPhoto from'./filmPhoto.png';
+import FilmSessions from "../../components/film-sessions";
+import filmPhoto from './filmPhoto.png';
 import "./index.scss";
 function getFilmInfo(id) {
     return {
@@ -32,9 +33,9 @@ function FilmPage({ match }) {
 
     if (isLoaded) {
         return (
-            <div>
-                <FilmInfo filmInfo={filmInfo} className="film-info"/>
-                <DatesCarousel id={id} />
+            <div className="film">
+                <FilmInfo filmInfo={filmInfo} className="film-info" />
+                <FilmSessions id={id} />
             </div>
         )
     } else {

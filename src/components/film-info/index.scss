@@ -1,5 +1,6 @@
 .film-info {
-    width: 100%;
+    width: 100% !important;
+    background-color: #C4BFE3;
     .film-row {
         width: 100%;
         .title {
@@ -12,6 +13,7 @@
             float: right;
             width: 80%;
             max-width: 250px;
+            filter: drop-shadow(7px 7px 10px rgba(0, 0, 0, 0.6));
         }
         .text-col {
             .text {

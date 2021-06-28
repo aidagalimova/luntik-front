@@ -1,0 +1,63 @@
+.carousel-row {
+    .right {
+        float: left;
+        cursor: pointer;
+    }
+
+    .left {
+        float: right;
+        cursor: pointer;
+    }
+
+    .table-container {
+        overflow-y: hidden;
+        overflow-x: scroll;
+        overflow-x: hidden;
+    }
+    .day {
+        margin-left: 5px;
+        text-align: center;
+        cursor: pointer;
+        width: 47px;
+        border-radius: 20px;
+        .number {
+            font-weight: bold;
+            color: #cbc8e3;
+        }
+        .weekDay {
+            margin-top: -10px;
+            font-weight: bold;
+            color: #c4bfe3;
+        }
+    }
+}
+.film-time-row {
+    width: 80%;
+    margin-left: 10%;
+    padding-bottom: 45px;
+}
+.film-time-col {
+    margin-right: 20px;
+}
+.no-tickets-text {
+    color: #c4bfe3;
+    font-weight: bold;
+}
+.hall-text {
+    color: #c4bfe3;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.hall-col {
+    margin-bottom: -20px;
+}
+.month {
+    color: #cbc8e3;
+    margin-top: -24px;
+    font-weight: bold;
+}
+
+.ant-col-2 {
+    align-self: center;
+    margin-top: 7px !important;
+}

@@ -1,10 +1,12 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import MainPage from "./main";
+import FilmPage from "./film";
 
 const Routing = () => (
     <Router>
         <Route path="/" component={MainPage} exact/>
+        <Route  path="/films/:id"  component={FilmPage}/>
     </Router>
 );
 

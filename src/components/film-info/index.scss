@@ -1,0 +1,24 @@
+.film-info {
+    width: 100%;
+    .film-row {
+        width: 100%;
+        .title {
+            font-weight: bold;
+            font-size: 40px;
+            color: #373841;
+            padding-left: 17%;
+        }
+        .photo {
+            float: right;
+            width: 80%;
+            max-width: 250px;
+        }
+        .text-col {
+            .text {
+                font-size: 20px;
+                font-weight: bold;
+                color: #373841;
+            }
+        }
+    }
+}

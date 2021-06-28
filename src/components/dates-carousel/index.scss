@@ -1,0 +1,42 @@
+.right{
+    float: left;
+    cursor: pointer;
+}
+
+.left{
+    float: right;
+    cursor: pointer;
+}
+
+.table-container {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    overflow-x: hidden;
+}
+.day {
+    margin-left: 5px;
+    text-align: center;
+    cursor: pointer;
+    width: 47px;
+    border-radius: 20px;
+    .number {
+        font-weight: bold;
+        color: #373841;
+    }
+    .weekDay {
+        margin-top: -10px;
+        font-weight: bold;
+        color: #5b5c69;
+    }
+}
+
+.month {
+    color: #373841;
+    margin-top: -24px;
+    font-weight: bold;
+}
+
+.ant-col-2{
+    align-self: center;
+    margin-top: 7px !important;
+}

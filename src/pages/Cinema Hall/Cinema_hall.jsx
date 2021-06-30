@@ -2,6 +2,7 @@ import {React, useEffect} from 'react'
 import Header from '../header/Header'
 import './cinema_hall.css'
 import $ from 'jquery'
+import ellipse from '../../resources/Ellipse.png'
 
 export default function Cinema_hall() {
 
@@ -453,7 +454,7 @@ export default function Cinema_hall() {
 					<div className="description__statuses">
 						<div className="description__status">	
 						<div className="description__status_logo">
-							<img src="../../resources/Ellipse.png" alt=""/>
+							<img src={ellipse} alt=""/>
 						</div>
 
 						<div className="description__status_text">
@@ -462,7 +463,7 @@ export default function Cinema_hall() {
 					</div>
 					<div className="description__status">	
 						<div className="description__status_logo">
-							<img src="../../resources/Ellipse.png" className="busy" alt=""/>
+							<img src={ellipse} className="busy" alt=""/>
 						</div>
 
 						<div className="description__status_text">

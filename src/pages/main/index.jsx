@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import './index.css'
 import film from '../../resources/300x450.jpg'
 import Header from '../../pages/header/Header'
@@ -9,6 +10,15 @@ function MainPage() {
          
          <div className="header">
         <Header/>
+=======
+import SignWindow from "../../components/sign-window";
+import DatesCarousel from "../../components/dates-carousel";
+function MainPage() {
+    return (
+        <div>
+            <SignWindow />
+            <DatesCarousel/>
+>>>>>>> 35f0914efe11f43cdabbe5be68748b13106ca926
         </div>
         
         

@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './App.scss';
 import 'antd/dist/antd.css';
 import {useDispatch, useSelector} from "react-redux";
-
+import Header from '../../pages/header/Header';
 function App() {
 
   const currentUser = useSelector(state => state.user.currentUser)
@@ -12,6 +12,7 @@ function App() {
   console.log(isAuth)
   return (
     <div className="app">
+      <Header/>
       <Routing />
     </div>
   )

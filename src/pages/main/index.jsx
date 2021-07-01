@@ -11,9 +11,6 @@ function MainPage() {
 
     return (
         <>
-            <div className="header">
-                <Header />
-            </div>
             <div className="wrapper">
                 <div className="films">
                     <div className="container">

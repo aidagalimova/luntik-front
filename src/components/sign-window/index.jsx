@@ -35,8 +35,7 @@ export function SignWindow() {
 
     const onSignin = (values) => {
         console.log(values);
-        setEmail(values["email"])
-        setPassword(values["password"])
+        dispatch(authenticate(values["email"], values["password"]))
     
     }
 
@@ -127,7 +126,7 @@ const Signin = () => (
             </Form.Item>
 
             <Button type="primary" htmlType="submit" className="signin-btn">
-                <h2 className="btnText" onClick={() =>  dispatch(authenticate(email, password))}>Войти</h2>
+                <h2 className="btnText">Войти</h2>
             </Button>
         </Form>
     </div>

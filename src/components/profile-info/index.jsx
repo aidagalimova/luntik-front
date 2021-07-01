@@ -15,6 +15,7 @@ function ProfileInfo() {
     // var obj = JSON.parse(sessionStorage.getItem('user'));
     const exit = () => {
         dispatch(deleteUser());
+        window.location.reload();
     }
     return (
         <div className="profile-info">

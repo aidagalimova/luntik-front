@@ -146,19 +146,9 @@ export function SignWindow() {
 
     return (
         <>
-
-            {!isAuth &&
                 <h1
                     className="lk-text"
                     onClick={showModal} >Войти</h1>
-            }
-
-            {isAuth &&
-
-                <h1
-                    className="lk-text"
-                ><a href='/profile'>Личный кабинет</a></h1>
-            }
 
             <Modal
                 visible={isModalVisible}

@@ -2,8 +2,13 @@ import React from "react";
 import './index.css'
 import film from '../../resources/300x450.jpg'
 import Header from '../../pages/header/Header'
+import {useDispatch, useSelector} from "react-redux";
+import { authenticate } from "../../store/actions/userActions";
 
 function MainPage() {
+    
+    const dispatch = useDispatch();
+
     return (
         <div className="wrapper">
          
@@ -20,7 +25,7 @@ function MainPage() {
         <div className="films">
         <div className="container">
         
-                <div className="films__header">
+                <div className="films__header" onClick={() => dispatch(authenticate("sasha@mail.ru","123456"))}>
                     Сегодня в кино:
                 </div>
                 

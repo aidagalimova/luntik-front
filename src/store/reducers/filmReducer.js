@@ -2,11 +2,10 @@ const SET_USER = "SET_USER"
 const DELETE_USER = "DELETE_USER" 
 
 export const defaultState = {
-    currentUser: {},
-    isAuth: false
+    films: [],
 }
 
-export const userReducer = (state = defaultState, action) => {
+export const filmReducer = (state = defaultState, action) => {
     switch (action.type) {
 		case SET_USER: 
 		return {

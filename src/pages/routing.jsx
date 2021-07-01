@@ -5,6 +5,7 @@ import MainPage from "./main";
 import FilmPage from "./film";
 import ProfilePage from "./profile";
 
+
 const isAuth = !!localStorage.getItem('token');
 const Routing = () => {
     if (isAuth) {

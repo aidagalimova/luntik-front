@@ -4,10 +4,19 @@ import film from '../../resources/300x450.jpg'
 import Header from '../../pages/header/Header'
 import {useDispatch, useSelector} from "react-redux";
 import { authenticate } from "../../store/actions/userActions";
+import { searchFilmByCategory } from "../../store/actions/filmActions";
 
 function MainPage() {
     
     const dispatch = useDispatch();
+    const films = useSelector(state => state.film.films)
+
+    //здесь получаем все фильмы какой то категории
+    dispatch(() => searchFilmByCategory())
+    
+    
+    //далее надо будет искать по названию, отслеживать изменения в инпуте
+    
 
     return (
         <div className="wrapper">

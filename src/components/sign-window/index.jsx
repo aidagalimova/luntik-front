@@ -139,7 +139,7 @@ const Signin = () => (
 
 
 useEffect(() => {
-     dispatch(currentUser(email))
+     dispatch(() => currentUser(email))
 },[isAuth])
 
 

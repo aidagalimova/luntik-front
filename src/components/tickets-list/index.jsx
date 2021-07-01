@@ -2,6 +2,8 @@ import React from "react";
 import Ticket from "../ticket";
 import { Row, Col } from "antd";
 import "./index.scss";
+import {useDispatch, useSelector} from "react-redux";
+import { getTicketsByIdUser } from "../../store/actions/ticketActions";
 
 function TicketsList() {
     var options = {
@@ -9,11 +11,20 @@ function TicketsList() {
         month: 'long',
         day: 'numeric',
     };
-    const ticketsList = tickets.map((dayTickets) => {
+
+    const tickets = useSelector(state => state.ticket.tickets)
+    const dispatch = useDispatch()
+    
+    var obj = JSON.parse(sessionStorage.getItem('user'))
+    let TicketsList = [];
+    TicketsList = dispatch(getTicketsByIdUser(obj.id))
+    console.log(TicketsList)
+
+    const ticketsList = TicketsList.map((dayTickets) => {
         return (
-            <Row key={dayTickets.date} className="tickets-row">
+            <Row key={dayTickets.price} className="tickets-row">
                 <Col span={24}>
-                    <h1 className="text">{dayTickets.date.toLocaleString("ru", options)}</h1>
+                    <h1 className="text"></h1>
                 </Col>
                 {dayTickets.tickets.map((ticket) => {
                     return (<Ticket ticket={ticket} key={ticket.id} />)

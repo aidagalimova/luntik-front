@@ -1,10 +1,10 @@
 import { setTicket } from "../reducers/ticketReducer"
 
-export const searchFilmByCategory = (value, category) => {
+export const getTicketsByIdUser = (id) => {
 	const token = localStorage.getItem('token')
 	return async dispatch => {
 		try {
-			await fetch('https://luntik-film.herokuapp.com/api/Films', {
+			await fetch('https://luntik-ticket.herokuapp.com/api/Tickets', {
 
 				method: 'get',
 				headers: {
@@ -17,8 +17,9 @@ export const searchFilmByCategory = (value, category) => {
 				.then((res) => res.json())
 				.then((response) => {
 					
+					console.log(response)
+					dispatch(setTicket(response));
 					
-					dispatch(setFilm(response.filter(item => item.category === category)))	
 					
 				})
 		}

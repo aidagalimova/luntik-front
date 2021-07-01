@@ -35,6 +35,7 @@ export const authenticate = (email, password) => {
 
 export const currentUser = (email) => {
 	const token = localStorage.getItem('token')
+	if (sessionStorage.getItem('user') == undefined) {
 	return async dispatch => {
 		try {
 			await fetch('https://luntik-account.herokuapp.com/api/Users', {
@@ -63,6 +64,7 @@ export const currentUser = (email) => {
 			console.log(e)
 		}
 	}
+}
 }
 
 

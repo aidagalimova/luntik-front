@@ -3,9 +3,10 @@ import { Button, Modal, Form, Input, Row, Col } from "antd";
 import "./index.scss";
 import {useDispatch, useSelector} from "react-redux";
 import { authenticate, currentUser, register } from "../../store/actions/userActions";
+import { Redirect } from 'react-router-dom';
 
 
-export function SignWindow(props) {
+export function SignWindow() {
 
 
     const dispatch = useDispatch()
@@ -18,6 +19,8 @@ export function SignWindow(props) {
     
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isSigninModal, setIsSigninModal] = useState(true);
+    
+
     const showModal = () => {
         setIsModalVisible(true);
     };
@@ -32,7 +35,9 @@ export function SignWindow(props) {
 
     const onSignin = (values) => {
         console.log(values);
-        dispatch(authenticate(values["email"], values["password"]))
+        setEmail(values["email"])
+        setPassword(values["password"])
+    
     }
 
     const onSignup = (values) => {
@@ -122,11 +127,12 @@ const Signin = () => (
             </Form.Item>
 
             <Button type="primary" htmlType="submit" className="signin-btn">
-                <h2 className="btnText">Войти</h2>
+                <h2 className="btnText" onClick={() =>  dispatch(authenticate(email, password))}>Войти</h2>
             </Button>
         </Form>
     </div>
 )
+
 
 
 

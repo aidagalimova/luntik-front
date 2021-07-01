@@ -46,6 +46,7 @@ export const currentUser = (email) => {
 			})
 				.then((res) => res.json())
 				.then((response) => {
+					console.log(email)
 					console.log(response)
 					let user = response.find(item => item.email === email);
 					console.log(user)

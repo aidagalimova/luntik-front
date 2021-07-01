@@ -34,17 +34,15 @@ export function SignWindow() {
    
 
     const onSignin = (values) => {
-        console.log(values);
         dispatch(authenticate(values["email"], values["password"]))
         setEmail(values["email"])
         setPassword(values["password"])
-    
+        window.location.reload();
     }
 
     const onSignup = (values) => {
-        console.log(values)
        dispatch(register(values["электронный адрес"], values["имя"], values["пароль"]));
-        
+       window.location.reload();
     };
 
 

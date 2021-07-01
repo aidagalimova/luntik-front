@@ -17,6 +17,7 @@ const Routing = () => {
                     <Route path="/films/:id" component={FilmPage} />
                     <Redirect to="/" />
                 </Switch>
+
             </Router>
         )
     } else {

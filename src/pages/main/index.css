@@ -148,6 +148,8 @@ body {
 .films {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
+  grid-area: films;
+  padding-bottom: calc(28px + 28 * ((100vw - 320px) / (1440 - 320)));
   background-color: #c4bfe3;
 }
 
@@ -159,6 +161,16 @@ body {
   line-height: 36px;
 }
 
+.films__search {
+  background: #d5d1ed;
+  border: 1px solid #000000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: calc(306px + 306 * ((100vw - 320px) / (1440 - 320)));
+  height: calc(29px + 29 * ((100vw - 320px) / (1440 - 320)));
+  margin-top: calc(10px + 10 * ((100vw - 320px) / (1440 - 320)));
+}
 
 @media (min-width: 1140px) {
   .films__items {

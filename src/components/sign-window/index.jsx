@@ -6,9 +6,9 @@ import { authenticate, register } from "../../store/actions/userActions";
 
 
 export function SignWindow() {
-
-
     const dispatch = useDispatch()
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
 
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -43,9 +43,42 @@ export function SignWindow() {
     //     dispatch(authenticate("sasha@mail.ru","123456"))
     // }
 
-   
-    
-   
+    const onSignin = (values) => {
+        console.log(values);
+        dispatch(authenticate(values.email, values.password))
+    }
+
+const Signin = () => (    
+    <div className="sign">
+        <Form
+            validateMessages={validateMessages}
+            onFinish={onSignin}>
+            <Form.Item
+                name="email"
+                rules={[{
+                    required: true,
+                    type: 'email'
+                }]}
+                className="item">
+                <Input className="input" placeholder="Электронный адрес" />
+            </Form.Item>
+
+            <Form.Item
+                name="password"
+                rules={[{
+                    required: true
+                }]}
+                className="item">
+                <Input value={password} setValue={setPassword} type="password" placeholder="Пароль"/>
+            </Form.Item>
+
+            <Button type="primary" htmlType="submit" className="signin-btn">
+                <h2 className="btnText">Войти</h2>
+            </Button>
+        </Form>
+    </div>
+)
+
 
     return (
         <>
@@ -63,7 +96,7 @@ export function SignWindow() {
                             <Col span={9} offset={3}><h1 className="main-title" onClick={() => madeRegister()}>Вход</h1></Col>
                             <Col span={12}><h2 className="not-main-title" onClick={() => setSign(false)}>Регистрация</h2></Col>
                         </Row>
-                        {Signin}
+                        <Signin />
                     </> :
                     <>
                         <Row>
@@ -93,9 +126,7 @@ const onSignup = (values) => {
     console.log(values);
 };
 
-const dispatch = useDispatch()
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
+
 
 const Signup = (
     
@@ -158,42 +189,7 @@ const Signup = (
                 
                 
 
-const onSignin = (values) => {
-    console.log(values);
-}
 
-const Signin = (
-    
-    
-    <div className="sign">
-        <Form
-            validateMessages={validateMessages}
-            onFinish={onSignin}>
-            <Form.Item
-                name="электронный адрес"
-                rules={[{
-                    required: true,
-                    type: 'email'
-                }]}
-                className="item">
-                <Input className="input" placeholder="Электронный адрес" />
-            </Form.Item>
-
-            <Form.Item
-                name="пароль"
-                rules={[{
-                    required: true
-                }]}
-                className="item">
-                <Input value={password} setValue={setPassword} type="password" placeholder="Пароль"/>
-            </Form.Item>
-
-            <Button type="primary" htmlType="submit" className="signin-btn">
-                <h2 className="btnText">Войти</h2>
-            </Button>
-        </Form>
-    </div>
-)
 
 
 export default SignWindow;

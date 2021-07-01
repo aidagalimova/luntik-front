@@ -1,0 +1,67 @@
+.calendar {
+    width: 41.5%;
+    background-color: #d5d1ed;
+    margin-left: 6% !important;
+}
+
+.date-text {
+    margin-left: 6%;
+    margin-bottom: -20px;
+}
+.date-time {
+    margin-left: 6% !important;
+    margin-right: 6% !important;
+    .date-time-form {
+        .date-time-input {
+            border: 1px solid #5b5c69;
+            box-sizing: border-box;
+            border-radius: 10px;
+            background: #d5d1ed !important;
+            height: 38px;
+            width: 90px;
+        }
+    }
+}
+.save-film {
+    display: inline;
+    margin-top: 20px;
+    background: #ffffff8c !important;
+    border: solid 1px;
+    border-color: black;
+    border-radius: 10px;
+    height: 55px !important;
+    width: 280px;
+    cursor: pointer;
+    margin-left: 6% !important;
+    margin-bottom: 20px;
+    &:hover {
+        background: #9590b3 !important;
+    }
+
+    &:active {
+        background: #d3cff0 !important;
+    }
+}
+.save-times {
+    display: inline;
+    margin-top: 10px;
+    background: #ffffff00 !important;
+    border: solid 1px;
+    border-color: black;
+    border-radius: 10px;
+    width: 230px;
+    cursor: pointer;
+    margin-right: 20px;
+    .btn-text {
+        color: black;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    &:hover {
+        background: #9590b3 !important;
+    }
+
+    &:active {
+        background: #d3cff0 !important;
+    }
+}

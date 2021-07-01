@@ -1,4 +1,5 @@
-import { setTicket } from "../reducers/ticketReducer"
+import { setFilm } from "../reducers/filmReducer"
+
 
 export const searchFilmByCategory = (value, category) => {
 	const token = localStorage.getItem('token')

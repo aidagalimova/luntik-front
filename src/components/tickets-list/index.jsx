@@ -16,9 +16,9 @@ function TicketsList() {
     const dispatch = useDispatch()
     
     var obj = JSON.parse(sessionStorage.getItem('user'))
-    let TicketsList = [];
-    TicketsList = dispatch(getTicketsByIdUser(obj.id))
-    console.log(TicketsList)
+    //let TicketsList = [];
+    //TicketsList = dispatch(getTicketsByIdUser(obj.id))
+    //console.log(TicketsList)
 
     const ticketsList = TicketsList.map((dayTickets) => {
         return (

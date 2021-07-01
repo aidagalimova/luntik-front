@@ -24,7 +24,7 @@ function ChangeInfoWindow({ email, name }) {
     return (
         <>
             <h1
-                className="lk-text"
+                className="change-lk-text"
                 onClick={showModal} >Изменить личные данные</h1>
             <Modal
                 visible={isModalVisible}

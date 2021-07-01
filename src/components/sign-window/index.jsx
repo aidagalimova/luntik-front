@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Button, Modal, Form, Input, Row, Col } from "antd";
 import "./index.scss";
+import {useDispatch, useSelector} from "react-redux";
+import { authenticate, register } from "../../store/actions/userActions";
 
-function SignWindow() {
+
+export function SignWindow() {
+
+
+    const dispatch = useDispatch()
+
+
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isSigninModal, setIsSigninModal] = useState(true);
 
@@ -19,6 +27,26 @@ function SignWindow() {
         setIsSigninModal(isSignIn);
     }
 
+    const madeRegister = () => {
+        const id = 6;
+        const email = "abr@mail.ru";
+        const firstName = "Alexander";
+        const lastName = "Kochedykov";
+        const dateOfBirth = "31.08.2012";
+        const phoneNumber = "89174386589";
+        const hashedPassword = "123456";
+        dispatch(register(id, email, firstName, lastName, dateOfBirth, phoneNumber, hashedPassword));
+    }
+
+    // const takeDispatch = () => {
+    //     const dispatch = useDispatch()
+    //     dispatch(authenticate("sasha@mail.ru","123456"))
+    // }
+
+   
+    
+   
+
     return (
         <>
             <h1 
@@ -32,7 +60,7 @@ function SignWindow() {
                 {isSigninModal ?
                     <>
                         <Row>
-                            <Col span={9} offset={3}><h1 className="main-title">Вход</h1></Col>
+                            <Col span={9} offset={3}><h1 className="main-title" onClick={() => madeRegister()}>Вход</h1></Col>
                             <Col span={12}><h2 className="not-main-title" onClick={() => setSign(false)}>Регистрация</h2></Col>
                         </Row>
                         {Signin}
@@ -65,8 +93,13 @@ const onSignup = (values) => {
     console.log(values);
 };
 
+const dispatch = useDispatch()
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+
 const Signup = (
-    <div className="sign">
+    
+     <div className="sign">
         <Form
             validateMessages={validateMessages}
             onFinish={onSignup}
@@ -120,13 +153,18 @@ const Signup = (
             </Button>
         </Form>
     </div>
+    
 )
+                
+                
 
 const onSignin = (values) => {
     console.log(values);
 }
 
 const Signin = (
+    
+    
     <div className="sign">
         <Form
             validateMessages={validateMessages}
@@ -147,7 +185,7 @@ const Signin = (
                     required: true
                 }]}
                 className="item">
-                <Input.Password className="input" placeholder="Пароль" />
+                <Input value={password} setValue={setPassword} type="password" placeholder="Пароль"/>
             </Form.Item>
 
             <Button type="primary" htmlType="submit" className="signin-btn">
@@ -156,5 +194,6 @@ const Signin = (
         </Form>
     </div>
 )
+
 
 export default SignWindow;

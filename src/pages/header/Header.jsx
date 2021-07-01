@@ -1,6 +1,8 @@
 import React from 'react'
 import './header.css'
 import logo from '../../resources/logo.png'
+import SignWindow from '../../components/sign-window'
+
 
 export default function Header() {
 	return (
@@ -14,7 +16,7 @@ export default function Header() {
 					</div>
 					<div className="header__cabinet">
 						<a className="header__cabinet_logo"></a>
-						<a className="header__cabinet_text" href="">Личный кабинет</a>
+						<div className="header__cabinet_text" ><SignWindow/></div>
 					</div>		
 					</div>
 		

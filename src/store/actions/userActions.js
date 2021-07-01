@@ -2,6 +2,7 @@ import { setUser } from "../reducers/userReducer"
 
 
 export const authenticate = (email, password) => {
+	if (email && password !== undefined) {
 	return async dispatch => {
         try {
     await fetch('https://luntik-account.herokuapp.com/token?email=' + email + '&password=' + password, {
@@ -16,7 +17,8 @@ export const authenticate = (email, password) => {
 		return res.json();
 		
 	})
-    .then((response) => {		
+    .then((response) => {
+		console.log("Вызван auth")		
 	   localStorage.setItem('token', response.access_token)
        dispatch(currentUser(response.email));
 
@@ -27,6 +29,7 @@ export const authenticate = (email, password) => {
         console.log(e)
     }
 }
+	}
 }
 
 
@@ -46,11 +49,14 @@ export const currentUser = (email) => {
 			})
 				.then((res) => res.json())
 				.then((response) => {
-					console.log(email)
+					
 					console.log(response)
 					let user = response.find(item => item.email === email);
 					console.log(user)
 					dispatch(setUser(response.find(item => item.email == email)))
+					let mail = response.find(item => item.email == email);
+					sessionStorage['user'] = JSON.stringify(mail);
+					
 				})
 		}
 		catch (e) {

@@ -36,6 +36,8 @@ export function SignWindow() {
     const onSignin = (values) => {
         console.log(values);
         dispatch(authenticate(values["email"], values["password"]))
+        setEmail(values["email"])
+        setPassword(values["password"])
     
     }
 
@@ -137,7 +139,7 @@ const Signin = () => (
 
 
 useEffect(() => {
-    dispatch(currentUser())
+     dispatch(currentUser(email))
 },[isAuth])
 
 
@@ -154,9 +156,10 @@ return (
     }
 
     {isAuth &&
+        
          <h1 
          className="lk-text"
-        >Личный кабинет</h1>
+        ><a href = '/profile'>Личный кабинет</a></h1>
     }
 
         <Modal

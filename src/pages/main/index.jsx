@@ -1,5 +1,4 @@
 import React from "react";
-
 import './index.css'
 import film from '../../resources/300x450.jpg'
 import Header from '../../pages/header/Header'
@@ -11,8 +10,6 @@ function MainPage() {
          <div className="header">
         <Header/>
         </div>
-
-        
         
         <div className="slider">
             
@@ -37,7 +34,7 @@ function MainPage() {
                                 <img src={film} alt=""/>
                             </div>
                             <div className="film__item_title start">
-                                Смешарики и друзья в кино. Выпуск 2  Eveniet, nulla perspiciatis? Ratione beatae repellendus quisquam dolore labore ex quas? Voluptas, quibusdam dolor laborum quis molestias quisquam amet hic nisi! Veniam.
+                                Смешарики и друзья в кино. Выпуск 2
                             </div>
                             <div className="film__item_type">
                                 Анимация, Приключения
@@ -95,7 +92,7 @@ function MainPage() {
                                 <img src={film} alt=""/>
                             </div>
                             <div className="film__item_title">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit obcaecati architecto dolores, labore atque omnis praesentium recusandae modi quasi. Ipsam veritatis laudantium illum nemo sunt ipsum quaerat dolor ex modi.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             </div>
                             <div className="film__item_type">
                                 Анимация, Приключения
@@ -110,31 +107,7 @@ function MainPage() {
                                 Смешарики и друзья в кино. Выпуск 2
                             </div>
                             <div className="film__item_type">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis voluptatum et, quae voluptatem enim animi ipsam ullam nisi omnis odit similique molestiae corporis, mollitia soluta dolores consectetur, eveniet eligendi. Suscipit.
-                            </div>
-                        </div>
-
-                        <div className="films__item">
-                            <div className="films__item_img">
-                                <img src={film} alt=""/>
-                            </div>
-                            <div className="film__item_title">
-                                Смешарики и друзья в кино. Выпуск 2
-                            </div>
-                            <div className="film__item_type">
-                                Анимация, Приключения
-                            </div>
-                        </div>
-
-                        <div className="films__item">
-                            <div className="films__item_img">
-                                <img src={film} alt=""/>
-                            </div>
-                            <div className="film__item_title">
-                                Смешарики и друзья в кино. Выпуск 2
-                            </div>
-                            <div className="film__item_type">
-                                Анимация, Приключения
+                                Lorem ipsum dolor sitlup
                             </div>
                         </div>
 
@@ -158,7 +131,31 @@ function MainPage() {
                                 Смешарики и друзья в кино. Выпуск 2
                             </div>
                             <div className="film__item_type">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, voluptatem cum sequi quisquam facere repudiandae reprehenderit maxime consequuntur impedit possimus incidunt, laborum enim placeat amet ullam voluptate asperiores consectetur numquam?
+                                Анимация, Приключения
+                            </div>
+                        </div>
+
+                        <div className="films__item">
+                            <div className="films__item_img">
+                                <img src={film} alt=""/>
+                            </div>
+                            <div className="film__item_title">
+                                Смешарики и друзья в кино. Выпуск 2
+                            </div>
+                            <div className="film__item_type">
+                                Анимация, Приключения
+                            </div>
+                        </div>
+
+                        <div className="films__item">
+                            <div className="films__item_img">
+                                <img src={film} alt=""/>
+                            </div>
+                            <div className="film__item_title">
+                                Смешарики и друзья в кино. Выпуск 2
+                            </div>
+                            <div className="film__item_type">
+                                Lorem, ipsum dolor sit ame
                             </div>
                         </div>
 

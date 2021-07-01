@@ -1,10 +1,10 @@
 .films__search {
-    background: #d5d1ed;
-    border: 1px solid #000000;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border-radius: 10px;
-    width: calc(306px + 306 * ((100vw - 320px) / (1440 - 320)));
-    height: calc(29px + 29 * ((100vw - 320px) / (1440 - 320)));
-    margin-top: calc(10px + 10 * ((100vw - 320px) / (1440 - 320)));
-  }
+    background: #d5d1ed !important;
+    border: 1px solid #000000 !important;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    width: calc(306px + 306 * ((100vw - 320px) / (1440 - 320))) !important;
+    height: calc(29px + 29 * ((100vw - 320px) / (1440 - 320))) !important;
+    margin-top: calc(10px + 10 * ((100vw - 320px) / (1440 - 320))) !important;
+}

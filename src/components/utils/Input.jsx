@@ -1,9 +1,10 @@
 import React from 'react';
 import './input.css'
+import { Button, Input } from "antd";
 
-const Input = (props) => {
+const Inputs = (props) => {
     return (
-        <input onChange={(event)=> props.setValue(event.target.value)}
+        <Input onChange={(event)=> props.setValue(event.target.value)}
                value={props.value}
                type={props.type}
                placeholder={props.placeholder}/>

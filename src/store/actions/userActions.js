@@ -13,14 +13,12 @@ export const authenticate = (email, password) => {
         }
     })
     .then((res) => {
-		console.log(res.json())
-		return res.json()
+		return res.json();
 		
 	})
-    .then((response) => {
-		
-		localStorage.setItem('token', response.access_token)
-       // dispatch(auth());
+    .then((response) => {		
+	   localStorage.setItem('token', response.access_token)
+       dispatch(currentUser(response.email));
 
 
     })
@@ -32,10 +30,11 @@ export const authenticate = (email, password) => {
 }
 
 
-export const login = (token) => {
+export const currentUser = (email) => {
+	const token = localStorage.getItem('token')
 	return async dispatch => {
 		try {
-			await fetch('http://some_url_for_getting_current_user', {
+			await fetch('https://luntik-account.herokuapp.com/api/Users', {
 
 				method: 'get',
 				headers: {
@@ -47,7 +46,10 @@ export const login = (token) => {
 			})
 				.then((res) => res.json())
 				.then((response) => {
-					dispatch(setUser(response.user))
+					console.log(response)
+					let user = response.find(item => item.email === email);
+					console.log(user)
+					dispatch(setUser(response.find(item => item.email == email)))
 				})
 		}
 		catch (e) {
@@ -58,7 +60,8 @@ export const login = (token) => {
 
 
 
-export const register = (id, email, firstName, lastName, dateOfBirth, phoneNumber, hashedPassword) => {
+export const register = (email, username, hashedPassword) => {
+	console.log(email, username, hashedPassword)
 	return async dispatch => {
         try {
     await fetch('https://luntik-account.herokuapp.com/api/Users', {
@@ -69,12 +72,11 @@ export const register = (id, email, firstName, lastName, dateOfBirth, phoneNumbe
             'Content-Type': 'application/json',
         },
 		body: JSON.stringify({
-			"id": id,
 			"email": email,
-			"firstName": firstName,
-			"lastName": lastName,
-			"dateOfBirth": dateOfBirth,
-			"phoneNumber": phoneNumber,
+			"firstName": username,
+			"lastName": "XXXXXXX",
+			"dateOfBirth": "01.01.1970",
+			"phoneNumber": "88984561365",
 			"hashedPassword": hashedPassword,
 			"isAdmin": true
 		})

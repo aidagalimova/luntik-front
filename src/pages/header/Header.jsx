@@ -12,7 +12,7 @@ export default function Header() {
 
 		<div className="header__items">
 			<div className="header__logo">
-				<a href=""><img src={logo} alt="" /></a>
+				<a href="/"><img src={logo} alt="" /></a>
 			</div>
 			<div className="header__name">
 				<div className="tarantino">Тарантиновский</div><div className="luntik">ЛУНТИК</div>

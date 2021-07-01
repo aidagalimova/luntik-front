@@ -1,0 +1,32 @@
+.list {
+    height: 300px;
+    width: 25vw;
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 100;
+    margin-top: 10px;
+    box-shadow: 7px 6px 41px rgba(127, 128, 196, 0.48);
+    border-radius: 5px;
+    padding: 0px !important;
+    overflow-y: scroll !important;
+    width: calc(306px + 306 * ((100vw - 320px) / (1440 - 320)));
+    .item {
+        padding: 15px;
+
+        &:hover {
+            background-color: var(--clr-light);
+            cursor: pointer;
+        }
+    }
+
+    .notfound {
+        position: absolute;
+        top: 130px;
+        width: 100%;
+        text-align: center;
+
+        .text {
+            color: var(--clr-sidebar) !important;
+        }
+    }
+}

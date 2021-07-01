@@ -1,0 +1,43 @@
+.films-div {
+    margin-left: 5%;
+    .add-film-btn {
+        display: inline;
+        margin-top: 20px;
+        background: #ffffff00 !important;
+        border: solid 1px;
+        border-color: black;
+        border-radius: 10px;
+        height: 55px !important;
+        width: 250px;
+        cursor: pointer;
+        margin-right: 20px;
+        .btnText {
+            color: black;
+            font-size: 30px;
+        }
+        &:hover {
+            background: #9590b3 !important;
+        }
+
+        &:active {
+            background: #d3cff0 !important;
+        }
+    }
+
+    .exit-text {
+        display: inline;
+        color: black;
+        font-size: 30px;
+        cursor: pointer;
+    }
+}
+.films-list-div {
+    margin-top: 30px;
+    .film-name-text {
+        display: inline;
+    }
+    .delete-icon {
+        cursor: pointer;
+        margin-top: 3px;
+    }
+}

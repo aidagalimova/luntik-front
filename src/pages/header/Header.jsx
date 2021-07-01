@@ -22,7 +22,7 @@ export default function Header() {
 
 				<div className="header__cabinet_text" >
 					{!isAuth ? <SignWindow /> :
-						<h1 className="lk-text"><a href='/profile'>Личный кабинет</a></h1>
+						<h1 className="lk-text"><a href='/profile' className="lk-text">Личный кабинет</a></h1>
 					}
 				</div>
 			</div>

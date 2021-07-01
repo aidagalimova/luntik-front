@@ -96,6 +96,9 @@ body {
   align-items: center;
 }
 
+.lk-text{
+  color:#ed7ef3 !important;
+}
 .header__name {
   font-weight: bold;
   font-size: calc(20px + 8 * ((100vw - 320px) / (1440 - 320)));

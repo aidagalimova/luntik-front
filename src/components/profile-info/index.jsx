@@ -4,12 +4,13 @@ import { Row, Col } from "antd";
 import ChangeInfoWindow from "../change-info-window";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../../store/reducers/userReducer";
+import { Redirect } from "react-router-dom";
 const userInfo = {
     name: "UserName",
     email: "username@gmail.com"
 }
 function ProfileInfo() {
-    
+
     const dispatch = useDispatch()
     // var obj = JSON.parse(sessionStorage.getItem('user'));
     const exit = () => {

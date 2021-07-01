@@ -1,0 +1,83 @@
+.page {
+    margin-left: 6%;
+    .add-film-text {
+        font-weight: bold;
+    }
+    .name-input {
+        border: 1px solid #5b5c69;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: #d5d1ed !important;
+        height: 38px;
+        width: 30%;
+        margin-right: 20px;
+        min-width: 170px;
+    }
+    .time-input {
+        border: 1px solid #5b5c69;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: #d5d1ed !important;
+        height: 38px;
+        width: 10%;
+        min-width: 90px;
+    }
+    .discription-input {
+        border: 1px solid #5b5c69;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: #d5d1ed !important;
+        height: 38px;
+        width: 41.5%;
+        min-width: 280px;
+        margin-top: 20px;
+        display: block;
+        height: 150px;
+    }
+    .save-times {
+        display: inline;
+        margin-top: 20px;
+        background: #ffffff00 !important;
+        border: solid 1px;
+        border-color: black;
+        border-radius: 10px;
+        height: 55px !important;
+        width: 280px;
+        cursor: pointer;
+        margin-right: 20px;
+
+        &:hover {
+            background: #9590b3 !important;
+        }
+
+        &:active {
+            background: #d3cff0 !important;
+        }
+    }
+}
+
+.sessions-text {
+    margin-left: 6%;
+}
+.ant-picker-panel {
+    background-color: #d5d1ed !important;
+}
+
+::placeholder {
+    color: #000000;
+    font-size: 15px;
+}
+
+.ant-select-selector {
+    background-color: #e3e0f5 !important;
+}
+.ant-picker-cell-selected {
+    .ant-picker-cell-inner,
+    .ant-picker-calendar-date {
+        background-color: #7c789b !important;
+    }
+}
+.ant-radio-button-wrapper,
+.ant-radio-button-wrapper-checked {
+    background-color: #e3e0f5 !important;
+}

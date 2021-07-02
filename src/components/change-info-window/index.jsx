@@ -21,7 +21,6 @@ function ChangeInfoWindow({ email, name }) {
         setIsInfoModal(true);
         setUserName(name);
         setIsModalVisible(false);
-        console.log(userName);
     };
 
     const setInfo = (isInfo) => {

@@ -16,8 +16,8 @@ import { getFilmsByIdSeance } from "../../store/actions/seanceActions";
 
         var obj = JSON.parse(sessionStorage.getItem('user'))
        
-        // useEffect(() => {
-        const getTicketsByIdUser = async (id) => {
+        useEffect(async () => {
+        
             const token = localStorage.getItem('token')
             
                 try {
@@ -36,18 +36,20 @@ import { getFilmsByIdSeance } from "../../store/actions/seanceActions";
                             
                             
                             setTicks(response.filter(item => item.userId === 4));
-                            getFilmsByIdSeance(ticks)
+                            
                         })
                 }
                 catch (e) {
                     console.log(e)
                 }
+
+                
             
-        }
+        }, [])
 
 
-
-        async function getFilmsByIdSeance (tickets){
+        useEffect(async () => {
+        
             const token = localStorage.getItem('token')
             var seances = [];
                 try {
@@ -65,26 +67,28 @@ import { getFilmsByIdSeance } from "../../store/actions/seanceActions";
                         .then((response) => {
                             
                             (response.forEach(element => {
-                               tickets.forEach(elem => {
+                               ticks.forEach(elem => {
                                    if(elem.seanceId == element.id) {
                                        seances.push(element);
                                    }
                                }) 
                             }));
                             setSeancesOfUser(seances)
-                            getFilmsById(seancesOfUser)
-                            //return (response.filter(item => item.id === id))	
-                            //получаю все сеансы данного пользователя
+                            
+                            
                         })
                 }
                 catch (e) {
                     console.log(e)
                 }
             
-        }
+        
+    }, [ticks])
 
 
-        async function getFilmsById (seances){
+        
+       
+    useEffect(async () => {
             const token = localStorage.getItem('token')
             var films = [];
                 try {
@@ -102,31 +106,22 @@ import { getFilmsByIdSeance } from "../../store/actions/seanceActions";
                         .then((response) => {
                             
                             (response.forEach(element => {
-                              seances.forEach(elem => {
+                              seancesOfUser.forEach(elem => {
                                    if(elem.filmId == element.id) {
                                        films.push(element);
                                    }
                                }) 
                             }));
                             setFilm(films)
-                            //return (response.filter(item => item.id === id))	
-                            //получаю все сеансы данного пользователя
+                            
                         })
                 }
                 catch (e) {
                     console.log(e)
                 }
             
-        }
-
-
-
-    // }, [ticks])
-
-       
-    //{seancesOfUser.find(it => { return it.id === dayTickets.seanceId})}
-       
-        
+    }, [seancesOfUser])
+  
        console.log(ticks)
        console.log(seancesOfUser)
        console.log(film)
@@ -136,16 +131,19 @@ import { getFilmsByIdSeance } from "../../store/actions/seanceActions";
         month: 'long',
         day: 'numeric',
     };
-    const ticketsList = ticks.map((dayTickets) => {
-        return (
-            <Row key={dayTickets.id} className="tickets-row">
+
+    const ticketsList = seancesOfUser.map((dayTickets) => {
+        return (    
+            <Row key={dayTickets.date.slice(0, 10)} className="tickets-row">
                 <Col span={24}>
-                    <h1 className="text">Сеанс</h1>
+                    <h1 className="text">{dayTickets.date.slice(0, 10)}</h1>
                 </Col>
                 {film.filter(item => item.id == dayTickets.filmId).map((ticket) => {
                     return (<Ticket film={ticket} seance={dayTickets} ticket={ticket} key={ticket.id} />)
                 })}
             </Row>
+        
+        
         )
     });
 
@@ -153,7 +151,7 @@ import { getFilmsByIdSeance } from "../../store/actions/seanceActions";
         <>
             <Row className="tickets-list">
                 {!ticketsList.length?
-                    <h1 className="text title" onClick={() => getTicketsByIdUser()}>У вас нет билетов</h1> :
+                    <h1 className="text title">У вас нет билетов</h1> :
                     <>
                         <Col span={24}> <h1 className="text title">Ваши билеты</h1></Col>
                         {ticketsList}

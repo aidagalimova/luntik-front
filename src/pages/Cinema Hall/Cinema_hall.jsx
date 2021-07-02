@@ -9,11 +9,18 @@ export default function Cinema_hall(props) {
 
 	const [tickets, setTickets] = useState([])
 	var obj = JSON.parse(sessionStorage.getItem('user'));
+	const [film, setFilm] = useState([])
+	const [seance, setSeance] = useState([])
+	const [added, setAdded] = useState([])
 
-	
-
+	useEffect(async () => {
+		document.querySelector('.wrapper').addEventListener('click', function(e){ // Вешаем обработчик клика на UL, не LI
+			setAdded(e.target.id); // Получили ID, т.к. в e.target содержится элемент по которому кликнули
+			addTicket(e.target.id)
+	  });
+	} , [])
 			
-
+			//document.querySelector(".seats__item_place").addEventListener("click", handleClick)
 
 			useEffect(async () => {
 
@@ -31,9 +38,14 @@ export default function Cinema_hall(props) {
 					  
 					  });
 					});
+				} , [])
 
-				const token = localStorage.getItem('token')
+					
+					useEffect(async () => {
+					const token = localStorage.getItem('token')
+
 					try {
+						
 						await fetch('https://luntik-ticket.herokuapp.com/api/Tickets', {
 			
 							method: 'get',
@@ -48,8 +60,6 @@ export default function Cinema_hall(props) {
 							.then((response) => {
 								setTickets(response.filter(item => item.seanceId == props.match.params.id))
 								
-								//return (response.filter(item => item.id === id))	
-								//получаю все сеансы данного пользователя
 							})
 							
 							
@@ -58,39 +68,72 @@ export default function Cinema_hall(props) {
 					catch (e) {
 						console.log(e)
 					}
+
+
+					
+						
+						var ticks = [];
+							try {
+								await fetch('https://luntik-seance.herokuapp.com/api/Seances', {
+					
+									method: 'get',
+									headers: {
+										'Accept': 'application/json',
+										'Content-Type': 'application/json',
+										'Authorization': 'Bearer' + token
+									}
+									
+					
+								})
+									.then((res) => res.json())
+									.then((response) => {
+										console.log(response)
+										console.log(props.match.params.id)
+										setSeance(response.filter(item => item.id == props.match.params.id))
+										getFilmById(seance[0].filmId)
+										
+										
+									})
+									
+									
+	
+									
+							}
+							catch (e) {
+								console.log(e)
+							}
+						
 				
 				} , [])
 
 
 				// useEffect(async () => {
-					async function addTicket(place) {
+					async function addTicket(id) {
 					const token = localStorage.getItem('token')
+					console.log('token ' + token)
 					var ticks = [];
 						try {
-							await fetch('https://luntik-ticket.herokuapp.com/api/Tickets', {
+							await fetch('https://luntik-ticket.herokuapp.com/book?Id=365&UserID=4', {
 				
-								method: 'post',
+								method: 'put',
 								headers: {
 									'Accept': 'application/json',
 									'Content-Type': 'application/json',
-									'Authorization': 'Bearer' + token
-								},
-								body: JSON.stringify(
-								{
-									"id": Date.now(),
-									"place": place,
-									"price": 500,
-									"seanceId": props.match.params.id,
-									"userId": obj.id
-								})
+									'Authorization': 'Bearer ' + token
+								}
+								// body: JSON.stringify(
+								// {
+								// 	"id": place,
+								// 	"userId": obj.id
+								// })
 								
 				
 							})
 								.then((res) => res.json())
 								.then((response) => {
 									console.log(response)
-									console.log(props.match.params.id)
-									setTicket(response.filter(item => item.seanceId == props.match.params.id))
+									// console.log(props.match.params.id)
+									// setTicket(response.filter(item => item.seanceId == props.match.params.id))
 									
 									
 									//return (response.filter(item => item.id === id))	
@@ -105,6 +148,41 @@ export default function Cinema_hall(props) {
 							console.log(e)
 						}
 					}
+
+
+						async function getFilmById(id) {
+							const token = localStorage.getItem('token')
+							var ticks = [];
+								try {
+									await fetch('https://luntik-film.herokuapp.com/api/Films', {
+						
+										method: 'get',
+										headers: {
+											'Accept': 'application/json',
+											'Content-Type': 'application/json',
+											'Authorization': 'Bearer' + token
+										}
+										
+						
+									})
+										.then((res) => res.json())
+										.then((response) => {
+											
+											setFilm(response.filter(item => item.id == id))
+											
+											
+											//return (response.filter(item => item.id === id))	
+											//получаю все сеансы данного пользователя
+										})
+										
+										//setTickets(ticks)
+		
+										
+								}
+								catch (e) {
+									console.log(e)
+								}
+							}
 					
 					// } , [tickets])
 	
@@ -137,17 +215,22 @@ export default function Cinema_hall(props) {
 
 									console.log(res);
 
-				// const handleClick = event => {
-				// 	const place = event.target.id
-				// 	if (place) {
-				// 	  addTicket(place);
-				// 	}
-				//   }
+					const bus = tickets.filter(i => i.userId !== null)
+
+
+					console.log(bus)
+
+				const handleClick = event => {
+					const place = event.target.id
+					if (place) {
+					  addTicket(place);
+					}
+				}
 
 
 				
 
-				
+			console.log(added)
 			
 
 	return (
@@ -175,29 +258,46 @@ export default function Cinema_hall(props) {
 							{item[index].place.slice(4, 6)}
 						</div>
 						<div className="seats__item__places">
-						{item.map((it) => 
-						<div className="seats__item_place" id={it.place}>
-							{(Number.parseInt(it.place.slice(4, 7)) - 1) * 10 + Number.parseInt(it.place.slice(11, 13))}
-						</div>
-						)}
+						{item.map((it) => (
+							bus.indexOf(it) != -1 ? (
+							<div className='seats__item_place busy' id={it}>
+
+							
+							{(Number.parseInt(it.place.slice(4, 7)) - 1) * 10 + Number.parseInt(it.place.slice(11, 14))}
+							
+							
+						</div>) : ( <div className='seats__item_place' id={it}>
+
+						{(Number.parseInt(it.place.slice(4, 7)) - 1) * 10 + Number.parseInt(it.place.slice(11, 14))}
+						</div>) 
+						) 
+						) 
+						}
 						</div>
 						<div className="seats__item__number_end">
 							{item[index].place.slice(4, 6)}
 						</div>
+						 </div>
+						)}
+						
+						
 						
 						</div>
 						
-					)}
-					</div>}
+					}
+					</div>
 						
-				</div>
+				
 
 				 
 				
-					
+				{seance.map((item =>	  
+					<div>
 				<div className="seats__description">
+					
 					<div className="description__place">
-						Лука 14:00 Зал 1 место - 200р
+						{item.name} Зал 1 место - 500р  
+						
 					</div>
 					<div className="description__statuses">
 						<div className="description__status">	
@@ -220,14 +320,17 @@ export default function Cinema_hall(props) {
 					</div>
 
 					</div>
+					</div>
 				
 				<button className="description__button">Забронировать</button>
-				{/* {document.querySelector(".seats__item_place").addEventListener("click", handleClick)}		 */}
-			</div>
 				</div>
+				 ))} 
+			
+			</div>
+			</div>
 			
 		</div>
-		</div>
+		
 
 		
 

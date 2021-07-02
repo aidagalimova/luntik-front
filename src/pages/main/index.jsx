@@ -87,18 +87,6 @@ function MainPage() {
                             </div>
                             {films.map((item, index) => (index < films.length) ? (
                                 <div>
-<<<<<<< HEAD
-                                <div className="films__items_right">
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={item.poster} alt="" />
-                                    </div>
-                                    <a href="/films/11"><div className="film__item_title">
-                                       {item.name}
-                                    </div>
-                                    <div className="film__item_type">
-                                       {item.category}
-=======
                                     <div className="films__items_right">
                                         <div className="films__item">
                                             <div className="films__item_img">
@@ -111,9 +99,7 @@ function MainPage() {
                                                 {item.category}
                                             </div>
                                         </div>
->>>>>>> 848cc89cd378529a67dc267a26cba1709eea7726
                                     </div>
-                                    </a>
                                 </div>
 
 

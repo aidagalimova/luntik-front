@@ -78,11 +78,9 @@ export const changeUserInfo = (newName, password) => {
 	const token = localStorage.getItem('token')
 	let user = sessionStorage.getItem('user');
 	user = JSON.parse(user);
-	console.log(newName);
 	user.firstName = newName;
 	const hashpassword = user.hashedPassword;
 	user.hashedPassword = password;
-	console.log(123, user);
 	return async dispatch => {
 		try {
 			await fetch(`https://luntik-account.herokuapp.com/api/Users/${user.id}/${password}`, {
@@ -96,9 +94,12 @@ export const changeUserInfo = (newName, password) => {
 
 			})
 				.then((res) => {
-					user.hashedPassword = hashpassword;
-					sessionStorage['user'] = JSON.stringify(user);
-					if (res === 200) {
+					if (res.status === 404) {
+						notification.open({ type: "error", message: "Неправильный пароль!" })
+					}
+					else {
+						user.hashedPassword = hashpassword;
+						sessionStorage['user'] = JSON.stringify(user);
 						window.location.reload();
 					}
 				})
@@ -114,7 +115,6 @@ export const changeUserPassword = (oldpassword, newpassword) => {
 	const token = localStorage.getItem('token')
 	let user = sessionStorage.getItem('user');
 	user = JSON.parse(user);
-	console.log(111, oldpassword);
 	user.hashedPassword = newpassword;
 	return async dispatch => {
 		try {
@@ -130,12 +130,12 @@ export const changeUserPassword = (oldpassword, newpassword) => {
 
 			})
 				.then((res) => {
-					console.log(1, "aaa");
-					dispatch(currentUser(user.email));
-					if (res === 200) {
+					if (res.status === 404) {
+						notification.open({ type: "error", message: "Неправильный пароль!" })
+					}
+					else {
+						dispatch(currentUser(user.email));
 						window.location.reload();
-					}else{
-
 					}
 				})
 		}

@@ -12,6 +12,7 @@ const userInfo = {
 function ProfileInfo() {
 
     const dispatch = useDispatch()
+
     var obj = JSON.parse(sessionStorage.getItem('user'));
     const exit = () => {
         dispatch(deleteUser());
@@ -25,7 +26,7 @@ function ProfileInfo() {
                     <h1 className="name"> Здравствуйте, {obj.firstName}! </h1>
                     <Row>
                         <Col span={9} className="text-col">
-                            <ChangeInfoWindow email={userInfo.email} name={userInfo.name} />
+                            <ChangeInfoWindow email={obj.email} name={obj.firstName} />
                         </Col>
                         <Col span={2}>
                             <h2 className="text" onClick={exit}>Выйти</h2>

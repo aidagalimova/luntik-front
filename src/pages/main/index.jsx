@@ -94,12 +94,13 @@ function MainPage() {
                                     <div className="films__item_img">
                                         <img src={item.poster} alt="" />
                                     </div>
-                                    <div className="film__item_title">
+                                    <a href="/films/11"><div className="film__item_title">
                                        {item.name}
                                     </div>
                                     <div className="film__item_type">
                                        {item.category}
                                     </div>
+                                    </a>
                                 </div>
                                 </div>
                                 </div>

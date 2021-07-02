@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DatesCarousel from "../../components/dates-carousel";
 import FilmInfo from "../../components/film-info";
 import FilmSessions from "../../components/film-sessions";
+import { setFilm } from "../../store/reducers/filmReducer";
 import filmPhoto from './filmPhoto.png';
 import "./index.scss";
 function getFilmInfo(id) {
@@ -25,6 +26,41 @@ function FilmPage({ match }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [filmInfo, setFilmInfo] = useState();
     const [id, setId] = useState();
+
+    const [films, setFilms] = useState({})
+
+
+
+    useEffect(async () => {
+        const token = localStorage.getItem('token')
+
+        try {
+            
+            await fetch('https://luntik-film.herokuapp.com/api/Films/' +  match.params.id, {
+
+                method: 'get',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+
+            })
+                .then((res) => res.json())
+                .then((response) => {
+                    setFilms(response)
+                    
+                })
+                
+                
+                
+        }
+        catch (e) {
+            console.log(e)
+        }   
+    
+    } , [])
+
     useEffect(() => {
         setId(match.params.id)
         setFilmInfo(getFilmInfo(id));
@@ -34,8 +70,8 @@ function FilmPage({ match }) {
     if (isLoaded) {
         return (
             <div className="film">
-                <FilmInfo filmInfo={filmInfo} className="film-info" />
-                <FilmSessions id={id} />
+                <FilmInfo filmInfo={films} className="film-info" />
+                <FilmSessions id={match.params.id} />
             </div>
         )
     } else {

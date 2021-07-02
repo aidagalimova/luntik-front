@@ -29,15 +29,7 @@ export default function Cinema_hall() {
 			}, []);
 
 	return (
-
-		
-
-		<div className="wrapper">
-			
-			<div className="header">
-				<Header/>
-			</div>
-
+		<div className="wrapper2">
 			<div className="seats">
 				<div className="container">
 					<div className="seats__logo">
@@ -87,7 +79,7 @@ export default function Cinema_hall() {
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							2
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -122,12 +114,12 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							2
 						</div>
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							3
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -162,12 +154,12 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							3
 						</div>
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							4
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -202,12 +194,12 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							4
 						</div>
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							5
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -242,12 +234,12 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							5
 						</div>
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							6
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -282,12 +274,12 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							6
 						</div>
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							7
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -322,12 +314,12 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							7
 						</div>
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							8
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -362,12 +354,12 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							8
 						</div>
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							9
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -402,12 +394,12 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							9
 						</div>
 					</div>
 					<div className="seats__item">
 						<div className="seats__item__number_start">
-							1
+							10
 						</div>
 						<div className="seats__item__places">
 						<div className="seats__item_place">
@@ -442,7 +434,7 @@ export default function Cinema_hall() {
 						</div>
 					</div>
 						<div className="seats__item__number_end">
-							1
+							10
 						</div>
 					</div>
 				</div>

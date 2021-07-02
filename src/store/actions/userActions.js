@@ -53,8 +53,8 @@ export const currentUser = (email) => {
 					console.log(response)
 					let user = response.find(item => item.email === email);
 					console.log(user)
-					dispatch(setUser(response.find(item => item.email == email)))
-					let mail = response.find(item => item.email == email);
+					dispatch(setUser(response.find(item => item.email === email)))
+					let mail = response.find(item => item.email === email);
 					sessionStorage['user'] = JSON.stringify(mail);
 					
 				})

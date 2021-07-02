@@ -4,6 +4,7 @@ import { ReactComponent as ArrowRight } from "./svg/arrowToRight.svg"
 import { ReactComponent as ArrowLeft } from "./svg/arrowToLeft.svg"
 import { Row, Col } from "antd";
 import FilmTime from "../film-time";
+import { setSeance } from "../../store/reducers/seanceReducer";
 
 const days = [];
 var options = {
@@ -42,7 +43,9 @@ function SessionDatesCarousel({ id }) {
 
     const [selectedDay, setSelectedDay] = useState(days[0][0][1]);
     const [scroll, setScroll] = useState(0);
+    const [seancesTimes, setSeancesTimes] = useState([])
     const [filmTimes, setFilmTimes] = useState([]);
+    const [seances, setSeances] = useState([])
     useEffect(() => {
         const element = document.getElementsByClassName('day ' + selectedDay);
         element[0].style.backgroundColor = "#30313D";
@@ -70,6 +73,42 @@ function SessionDatesCarousel({ id }) {
         }
     }
 
+    async function getSeancesByFilm() {
+        const token = localStorage.getItem('token')
+        console.log('token ' + token)
+        var ticks = [];
+            try {
+                await fetch('https://luntik-seance.herokuapp.com/api/Seances', {
+    
+                    method: 'get',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    }
+                   
+                    
+    
+                })
+                    .then((res) => res.json())
+                    .then((response) => {
+                        console.log(response)
+                        
+                        setSeances(response.filter(item => item.filmId == id))
+                        console.log(seances)
+                        
+                        
+                    })
+                    
+                   
+
+                    
+            }
+            catch (e) {
+                console.log(e)
+            }
+        }
+
     // сменить стиль кнопки дня, получить время сеансов которые есть на этот день
     const onDayClick = (day) => {
         const prevElement = document.getElementsByClassName('day ' + selectedDay);
@@ -79,12 +118,14 @@ function SessionDatesCarousel({ id }) {
         element[0].style.backgroundColor = "#30313D";
         setSelectedDay(day[1]);
         getFilmTimes(day);
+        console.log(day)
     }
 
     // получить все залы и времена которые есть на конкретный день
     const getFilmTimes = (day) => {
         let dayStr = (day + "").replaceAll(",", " ")
-        let halls = dates.find(date => date.date === dayStr)
+        console.log('DAY STR' + dayStr)
+        let halls = seances.find(date => date.date.slice(0, 10) === dayStr)
         if (halls === undefined) {
             setFilmTimes(<h1 className="no-tickets-text">Билетов нет</h1>);
             return

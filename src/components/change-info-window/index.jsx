@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { Button, Modal, Form, Input, Row, Col } from "antd";
+import { useDispatch } from "react-redux";
 import "./index.scss";
+import { changeUserInfo, changeUserPassword } from "../../store/actions/userActions";
+import { useEffect } from "react";
 
 function ChangeInfoWindow({ email, name }) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isInfoModal, setIsInfoModal] = useState(true);
     const [userName, setUserName] = useState(name);
+    var obj = JSON.parse(sessionStorage.getItem('user'));
+    useEffect(() => {
+
+    }, [])
     const showModal = () => {
         setIsModalVisible(true);
     };
@@ -14,7 +21,6 @@ function ChangeInfoWindow({ email, name }) {
         setIsInfoModal(true);
         setUserName(name);
         setIsModalVisible(false);
-        console.log(userName);
     };
 
     const setInfo = (isInfo) => {
@@ -41,7 +47,7 @@ function ChangeInfoWindow({ email, name }) {
                                 <h3 className="not-main-title" onClick={() => setInfo(false)}>Сменить пароль</h3>
                             </Col>
                         </Row>
-                        {ChangeInfo(email, userName)}
+                        <ChangeInfo email={email} name={userName} />
                     </> :
                     <>
                         <Row className="title-row">
@@ -52,7 +58,7 @@ function ChangeInfoWindow({ email, name }) {
                                 <h3 className="not-main-title" onClick={() => setInfo(true)}>Личные данные</h3>
                             </Col>
                         </Row>
-                        {ChangePassword}
+                        <ChangePassword />
                     </>
                 }
             </Modal>
@@ -68,86 +74,100 @@ const validateMessages = {
     }
 };
 
-const SaveChangeInfo = (values) => {
-    console.log(values);
-};
+const  ChangeInfo = ({ email, name }) => {
+    const dispatch = useDispatch();
+    const  SaveChangeInfo = (values) => {
+       dispatch(changeUserInfo(values["имя"], values["пароль"]));
+    };
+    return (
+        <div className="change">
+            <Form
+                initialValues={{
+                    ["имя"]: name
+                }}
+                validateMessages={validateMessages}
+                onFinish={SaveChangeInfo}
+            >
+                <Form.Item
+                    name="электронный адрес"
+                    className="item">
+                    <Input className="input email" placeholder={email} disabled />
+                </Form.Item>
 
-const ChangeInfo = (email, name) => (
-    <div className="change">
-        <Form
-            initialValues={{
-                ["имя"]: name
-            }}
-            validateMessages={validateMessages}
-            onFinish={SaveChangeInfo}
-        >
-            <Form.Item
-                name="электронный адрес"
-                className="item">
-                <Input className="input email" placeholder={email} disabled />
-            </Form.Item>
+                <Form.Item
+                    name="имя"
+                    rules={[{ required: true, max: 10, min: 3 }]}
+                    className="item">
+                    <Input className="input" />
+                </Form.Item>
+                <Form.Item
+                    name="пароль"
+                    rules={[{
+                        required: true,
+                        min: 8
+                    }]}
+                    className="item">
+                    <Input.Password className="input" placeholder="Текущий пароль" />
+                </Form.Item>
 
-            <Form.Item
-                name="имя"
-                rules={[{ required: true, max: 10, min: 3 }]}
-                className="item">
-                <Input className="input" />
-            </Form.Item>
-
-            <Button type="primary" htmlType="submit" className="signup-btn">
-                <h2 className="btnText">Сохранить</h2>
-            </Button>
-        </Form>
-    </div>
-)
-
-const SaveChangePassword = (values) => {
-    console.log(values);
+                <Button type="primary" htmlType="submit" className="signup-btn">
+                    <h2 className="btnText">Сохранить</h2>
+                </Button>
+            </Form>
+        </div>
+    )
 }
 
-const ChangePassword = (
-    <div className="change">
-        <Form
-            validateMessages={validateMessages}
-            onFinish={SaveChangePassword}>
-            <Form.Item
-                name="старый пароль"
-                className="item">
-                <Input.Password className="input" placeholder="Старый пароль" />
-            </Form.Item>
+const ChangePassword = () => {
+    const dispatch = useDispatch();
 
-            <Form.Item
-                name="пароль"
-                dependencies={["пароль2"]}
-                rules={[{
-                    required: true,
-                    min: 8
-                }]}
-                className="item">
-                <Input.Password className="input" placeholder="Текущий пароль" />
-            </Form.Item>
+    const SaveChangePassword = (values) => {
+        dispatch(changeUserPassword(values["старый пароль"], values["пароль"]));
+    }
+    return (
+        <div className="change">
+            <Form
+                validateMessages={validateMessages}
+                onFinish={SaveChangePassword}>
+                <Form.Item
+                    name="старый пароль"
+                    className="item">
+                    <Input.Password className="input" placeholder="Старый пароль" />
+                </Form.Item>
 
-            <Form.Item
-                name="пароль2"
-                rules={[
-                    ({ getFieldValue }) => ({
-                        validator(rule, value) {
-                            if (getFieldValue("пароль") !== value) {
-                                return Promise.reject(["Пароли должны совпадать"]);
+                <Form.Item
+                    name="пароль"
+                    dependencies={["пароль2"]}
+                    rules={[{
+                        required: true,
+                        min: 8
+                    }]}
+                    className="item">
+                    <Input.Password className="input" placeholder="Текущий пароль" />
+                </Form.Item>
+
+                <Form.Item
+                    name="пароль2"
+                    rules={[
+                        ({ getFieldValue }) => ({
+                            validator(rule, value) {
+                                if (getFieldValue("пароль") !== value) {
+                                    return Promise.reject(["Пароли должны совпадать"]);
+                                }
+                                return Promise.resolve();
                             }
-                            return Promise.resolve();
-                        }
-                    })]}
-                dependencies={["пароль"]}
-                className="item">
-                <Input.Password className="input" placeholder="Повторите пароль" />
-            </Form.Item>
+                        })]}
+                    dependencies={["пароль"]}
+                    className="item">
+                    <Input.Password className="input" placeholder="Повторите пароль" />
+                </Form.Item>
 
-            <Button type="primary" htmlType="submit" className="signin-btn">
-                <h2 className="btnText">Сохранить</h2>
-            </Button>
-        </Form>
-    </div>
-)
+                <Button type="primary" htmlType="submit" className="signin-btn">
+                    <h2 className="btnText">Сохранить</h2>
+                </Button>
+            </Form>
+        </div>
+    )
+}
 
 export default ChangeInfoWindow;

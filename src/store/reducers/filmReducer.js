@@ -1,5 +1,5 @@
-const SET_USER = "SET_USER"
-const DELETE_USER = "DELETE_USER" 
+const SET_FILM = "SET_FILM"
+const DELETE_FILM = "DELETE_FILM" 
 
 export const defaultState = {
     films: [],
@@ -7,19 +7,13 @@ export const defaultState = {
 
 export const filmReducer = (state = defaultState, action) => {
     switch (action.type) {
-		case SET_USER: 
-		return {
-			...state, 
-			currentUser: action.payload,
-			isAuth: true
+		case SET_FILM:		
+		return {...state, tickets: [...state.tickets, action.payload]}
 		
-		}
-		case DELETE_USER:
-		localStorage.removeItem('token')
+		case DELETE_FILM:
 		return {
 			...state, 
-			currentUser: {},
-			isAuth: false
+			films: [],
 		}
 	
         default:
@@ -27,6 +21,6 @@ export const filmReducer = (state = defaultState, action) => {
     }
 }
 
-export const setUser = (user) => ({type: SET_USER, payload: user})
+export const setFilm = (films) => ({type: SET_FILM, payload: films})
 
-export const deleteUser = () => ({type: DELETE_USER})
+export const deleteFilm = () => ({type: DELETE_FILM})

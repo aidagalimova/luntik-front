@@ -1,194 +1,150 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import './index.css'
 import film from '../../resources/300x450.jpg'
-import Header from '../../pages/header/Header'
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "../../store/actions/userActions";
+import { searchFilmByCategory } from "../../store/actions/filmActions";
 import Search from "../../components/search";
+import { setFilm } from "../../store/reducers/filmReducer";
+
 function MainPage() {
 
     const dispatch = useDispatch();
+    const [films, setFilms] = useState([])
+    const [isLoad, setIsLoad] = useState(false)
 
-    return (
-        <>
+    //здесь получаем все фильмы какой то категории
+    dispatch(() => searchFilmByCategory())
+
+    useEffect(async () => {
+        const token = localStorage.getItem('token')
+        var ticks = [];
+        try {
+            await fetch('https://luntik-film.herokuapp.com/api/Films', {
+
+                method: 'get',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer' + token
+                }
+
+            })
+                .then((res) => res.json())
+                .then((response) => {
+                    console.log(response)
+                    setFilms(response)
+
+                    //return (response.filter(item => item.id === id))	
+                    //получаю все сеансы данного пользователя
+                })
+
+
+        }
+        catch (e) {
+            console.log(e)
+        }
+        setIsLoad(true);
+
+    }, [])
+
+    //далее надо будет искать по названию, отслеживать изменения в инпуте
+
+    if (!isLoad) {
+        return (<div>Загрузка...</div>)
+    } else {
+        return (
+
             <div className="wrapper">
                 <div className="films">
                     <div className="container">
 
-                        <div className="films__header" onClick={() => dispatch(authenticate("sasha@mail.ru", "123456"))}>
+                        <div className="films__header">
                             Сегодня в кино:
                         </div>
 
-                        <Search />
+                        <Search films={films} />
 
                         <div className="films__items">
 
+
                             <div className="films__items_left">
-                                <div className="films__item films__item_start">
-                                    <div className="films__item_img_start">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title start">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
+                                {films[0] &&
+                                    <div className="films__item films__item_start">
 
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
+                                        <div className="films__item_img_start">
+                                            <img src={films[0].poster} alt="" />
+                                        </div>
+                                        <div className="film__item_title start">
+                                            {films[0].name}
+                                        </div>
+                                        <div className="film__item_type">
+                                            {films[0].category}
+                                        </div>
                                     </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
+                                }
+
                             </div>
-                            <div className="films__items_right">
+                            {films.map((item, index) => (index < films.length) ? (
+                                <div>
+<<<<<<< HEAD
+                                <div className="films__items_right">
                                 <div className="films__item">
                                     <div className="films__item_img">
-                                        <img src={film} alt="" />
+                                        <img src={item.poster} alt="" />
                                     </div>
-                                    <div className="film__item_title">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    <a href="/films/11"><div className="film__item_title">
+                                       {item.name}
                                     </div>
                                     <div className="film__item_type">
-                                        Анимация, Приключения
+                                       {item.category}
+=======
+                                    <div className="films__items_right">
+                                        <div className="films__item">
+                                            <div className="films__item_img">
+                                                <img src={item.poster} alt="" />
+                                            </div>
+                                            <div className="film__item_title">
+                                                {item.name}
+                                            </div>
+                                            <div className="film__item_type">
+                                                {item.category}
+                                            </div>
+                                        </div>
+>>>>>>> 848cc89cd378529a67dc267a26cba1709eea7726
                                     </div>
+                                    </a>
                                 </div>
 
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Lorem ipsum dolor sitlup
-                                    </div>
-                                </div>
 
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
 
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
+                            ) : <div>nothing</div>)}
 
+                            {/* <div className="films__items_left">
                                 <div className="films__item">
                                     <div className="films__item_img">
-                                        <img src={film} alt="" />
+                                        <img src={item.poster} alt="" />
                                     </div>
                                     <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
+                                        {item.name}
                                     </div>
                                     <div className="film__item_type">
-                                        Анимация, Приключения
+                                        {item.category}
                                     </div>
                                 </div>
-
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Lorem, ipsum dolor sit ame
-                                    </div>
-                                </div>
-
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
-
-                                <div className="films__item">
-                                    <div className="films__item_img">
-                                        <img src={film} alt="" />
-                                    </div>
-                                    <div className="film__item_title">
-                                        Смешарики и друзья в кино. Выпуск 2
-                                    </div>
-                                    <div className="film__item_type">
-                                        Анимация, Приключения
-                                    </div>
-                                </div>
-                            </div>
+                                
+                               
+                            <div/>
+                            </div> 
+                             */}
                         </div>
+
                     </div>
-
-
-
                 </div>
-
-
             </div>
-        </>
-    )
+
+        )
+    }
 }
 
 export default MainPage;

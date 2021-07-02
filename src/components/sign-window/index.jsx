@@ -134,11 +134,16 @@ export function SignWindow() {
 
 
 
+useEffect(() => {
+     dispatch(() => currentUser(email))
+},[isAuth])
 
 
-    useEffect(() => {
-        dispatch(currentUser(email))
-    }, [isAuth])
+
+
+    // useEffect(() => {
+    //     dispatch(currentUser(email))
+    // }, [isAuth])
 
 
 

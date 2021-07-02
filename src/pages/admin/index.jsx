@@ -4,6 +4,7 @@ import "./index.scss";
 import { ReactComponent as DeleteIcon } from "./svg/delete.svg";
 import { Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { deleteUser } from "../../store/reducers/userReducer";
 
 const films = [
     { id: 1, name: "Luka" },

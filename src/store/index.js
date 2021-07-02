@@ -2,6 +2,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { filmReducer } from "./reducers/filmReducer";
+import { seanceReducer } from "./reducers/seanceReducer";
 import { ticketReducer } from "./reducers/ticketReducer";
 import { userReducer } from "./reducers/userReducer";
 
@@ -11,7 +12,8 @@ import { userReducer } from "./reducers/userReducer";
 const rootReducer = combineReducers({
 	user: userReducer,
 	ticket: ticketReducer,
-	film: filmReducer
+	film: filmReducer,
+	seance: seanceReducer
 })
 
 

@@ -13,7 +13,7 @@ const Routing = () => {
             <Router>
                 <Switch>
                     <Route path="/" component={MainPage} exact />
-                    <Route path="/cinema_hall" component={Cinema_hall}></Route>
+                    <Route path="/cinema_hall/:id" component={Cinema_hall}></Route>
                     <Route path="/profile" component={ProfilePage} exact />
                     <Route path="/films/:id" component={FilmPage} />
                     <Redirect to="/" />

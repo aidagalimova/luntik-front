@@ -141,9 +141,9 @@ useEffect(() => {
 
 
 
-    useEffect(() => {
-        dispatch(currentUser(email))
-    }, [isAuth])
+    // useEffect(() => {
+    //     dispatch(currentUser(email))
+    // }, [isAuth])
 
 
 

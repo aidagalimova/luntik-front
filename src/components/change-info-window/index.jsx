@@ -6,9 +6,12 @@ function ChangeInfoWindow({ email, name }) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isInfoModal, setIsInfoModal] = useState(true);
     const [userName, setUserName] = useState(name);
+    var obj = JSON.parse(sessionStorage.getItem('user'));
     const showModal = () => {
         setIsModalVisible(true);
     };
+
+   
 
     const handleCancel = () => {
         setIsInfoModal(true);

@@ -16,17 +16,16 @@ export const authenticate = (email, password) => {
 				})
 					.then((res) => {
 						return res.json();
-
 					})
 					.then((response) => {
-						// if (response.status === 200) {
 						console.log("Вызван auth")
-						localStorage.setItem('token', response.access_token)
-						dispatch(currentUser(response.email));
-						// } else {
-						// 	notification.open({ type: "error", message: "Неправильный логин или пароль!" })
-						// }
-
+						if (response.errorText) {
+							notification.open({ type: "error", message: "Неправильный пароль или email!" })
+						}
+						else {
+							localStorage.setItem('token', response.access_token)
+							dispatch(currentUser(response.email));
+						}
 					})
 			}
 			catch (e) {
@@ -55,16 +54,11 @@ export const currentUser = (email) => {
 					.then((res) => res.json())
 					.then((response) => {
 						console.log(response);
-						// if (response.status === 200) {
 						let user = response.find(item => item.email === email);
 						console.log(user)
 						dispatch(setUser(response.find(item => item.email == email)))
 						let mail = response.find(item => item.email == email);
 						sessionStorage['user'] = JSON.stringify(mail);
-						// } else {
-						// 	notification.open({ type: "error", message: "Неправильный логин или пароль!" })
-						// }
-
 					})
 			}
 			catch (e) {

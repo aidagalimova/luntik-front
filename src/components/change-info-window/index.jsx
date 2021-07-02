@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal, Form, Input, Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 import "./index.scss";
-import { changeUserInfo } from "../../store/actions/userActions";
+import { changeUserInfo, changeUserPassword } from "../../store/actions/userActions";
 import { useEffect } from "react";
 
 function ChangeInfoWindow({ email, name }) {
@@ -75,12 +75,10 @@ const validateMessages = {
     }
 };
 
-const ChangeInfo = ({ email, name }) => {
+const  ChangeInfo = ({ email, name }) => {
     const dispatch = useDispatch();
-
-    const SaveChangeInfo = (values) => {
-        dispatch(changeUserInfo(values["имя"], values["пароль"]));
-        window.location.reload();
+    const  SaveChangeInfo = (values) => {
+       dispatch(changeUserInfo(values["имя"], values["пароль"]));
     };
     return (
         <div className="change">
@@ -125,8 +123,7 @@ const ChangePassword = () => {
     const dispatch = useDispatch();
 
     const SaveChangePassword = (values) => {
-        dispatch(changeUserInfo(values["пароль"]));
-        window.location.reload();
+        dispatch(changeUserPassword(values["старый пароль"], values["пароль"]));
     }
     return (
         <div className="change">
